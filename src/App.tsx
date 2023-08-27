@@ -65,7 +65,11 @@ export function App() {
               return
             }
 
-            await loadTransactionsByEmployee(newValue.id)
+            if (!newValue?.id || (newValue?.firstName === "All" && newValue.lastName === "Employees")) {
+              await loadAllTransactions();
+            } else {
+              await loadTransactionsByEmployee(newValue.id);
+            }
           }}
         />
 
